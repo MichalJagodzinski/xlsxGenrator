@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 @Setter
 @Getter
 @Configuration
-@ConfigurationProperties(prefix = "app.generation.jfsmql")
+@ConfigurationProperties(prefix = "app.generation.xlsx")
 public class DataXlsx {
     private String stringQuote;
     private String datetimeSeparator;
