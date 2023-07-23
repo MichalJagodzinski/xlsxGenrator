@@ -14,7 +14,7 @@
 
 	<appender name="FILE" class="ch.qos.logback.core.FileAppender">
 		<append>true</append>
-		<file>/var/log/tomcat9/jfs-operations-lite-mock/jfs-operations-lite-mock-${onDate}.log</file>
+		<file>/var/log/tomcat9/xlsxGenerator/xlsx-generator-${onDate}.log</file>
 		<encoder>
 			<pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</pattern>
 		</encoder>

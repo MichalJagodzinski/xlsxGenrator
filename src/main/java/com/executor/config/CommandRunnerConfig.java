@@ -28,7 +28,7 @@ public class CommandRunnerConfig implements CommandLineRunner {
     }
 
     private void logDBConnectionInfo() {
-        log.info("jfs-operations-lite-mock startup "
+        log.info("xlsx-generator"
                 + ", profile: " + activeProfile
                 + ", available modes: " + modes
                 + ", available data types: " + String.join(",", dataTypes)

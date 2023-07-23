@@ -9,12 +9,12 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>com.jfs.operations.lite.mock</groupId>
-    <artifactId>jfs-operations-lite-mock</artifactId>
+    <groupId>com.executor</groupId>
+    <artifactId>xlsxGenerator</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>jfs-operations-lite-mock</name>
-    <description>jFeeSoft Operations Support App Lite Mock</description>
+    <name>xlsxGenerator</name>
+    <description>xlsx generator</description>
 
     <properties>
         <java.version>11</java.version> <!-- TODO: openjdk17 -->
@@ -114,7 +114,7 @@
                     <!-- Use for local Tomcat: -->
                     <!--<url>http://localhost:8080/manager/text</url>-->
                     <server>TomcatServer</server>
-                    <path>/jfs-operations-lite-mock-ci</path>
+                    <path>/xlsx-generator-ci</path>
                     <username>admin</username>
                     <password>admin</password>
                 </configuration>

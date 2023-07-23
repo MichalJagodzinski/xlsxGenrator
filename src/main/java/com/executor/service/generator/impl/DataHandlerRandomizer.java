@@ -2,7 +2,6 @@ package com.executor.service.generator.impl;
 
 import com.executor.config.AppConfig;
 import com.executor.config.DataTypeConfig;
-import com.executor.config.ModeFactory;
 import com.executor.domain.Config;
 import com.executor.service.generator.DataHandler;
 import com.executor.service.xlsx.framework.Val;
@@ -21,13 +20,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
-/**
- * The class is not handled by Spring Boot, but it's handled with the
- * factory method in {@link ModeFactory}. Please see the project-doc
- * to learn how to add the new mode in the app.
- *
- * @see ModeFactory
- */
 public class DataHandlerRandomizer implements DataHandler {
     private final Random random = new Random();
     @Autowired
@@ -55,7 +47,7 @@ public class DataHandlerRandomizer implements DataHandler {
                     row = sheet.createRow(startRowIndex);
                     for (int columnNumber = 0; columnNumber < config.getConfig().get(sheetIndex).getDataStructureConfig().getColumns().size(); columnNumber++) {
                         String columnValue = config.getConfig().get(sheetIndex).getDataStructureConfig().getDataTypes().get(columnNumber);
-                        Optional<Val> val = applyJfsmQL(sheet.getSheetName(), sheet.getRow(headerRowIndex).getCell(columnNumber).getStringCellValue(), constraints, workbook);
+                        Optional<Val> val = applyXlsx(sheet.getSheetName(), sheet.getRow(headerRowIndex).getCell(columnNumber).getStringCellValue(), constraints, workbook);
                         if (dataTypeConfig.getStringType().equals(columnValue))
                             row.createCell(columnNumber).setCellValue(val.isPresent() ? val.get().getAtomic() : (RandomStringUtils.randomAlphabetic(appConfig.getMaxLengthString())));
                         else if (dataTypeConfig.getIntegerType().equals(columnValue))
@@ -84,7 +76,7 @@ public class DataHandlerRandomizer implements DataHandler {
         return LocalDateTime.now().minus(Period.ofDays((random.nextInt(appConfig.getMaxDays())))).minusHours(random.nextInt(appConfig.getMaxHours())).minusMinutes(random.nextInt(appConfig.getMaxMinutesSeconds())).minusSeconds(random.nextInt(appConfig.getMaxMinutesSeconds()));
     }
 
-    private Optional<Val> applyJfsmQL(String sheetName, String columnName, List<String> constraints, XSSFWorkbook xssfWorkbook) {
+    private Optional<Val> applyXlsx(String sheetName, String columnName, List<String> constraints, XSSFWorkbook xssfWorkbook) {
         for (String constraint : constraints) {
             Optional<Val> res = factory.init(constraint, xssfWorkbook).run(SheetColumn.builder().sheetName(sheetName).columnName(columnName).build());
             if (res.isPresent()) return res;
