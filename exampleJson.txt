@@ -1,0 +1,152 @@
+{
+   "config":[
+      {
+         "dataStructureConfig":{
+            "sheetName":"Products",
+            "sheetIndex":0,
+            "headerRowIndex":1,
+            "startRowIndex":2,
+            "step":0,
+            "columns":[
+               "L.P.",
+               "Name",
+               "Code",
+               "VAT",
+               "Type",
+               "Gross",
+               "Net",
+               "Active"
+            ],
+            "dataTypes":[
+               "integer",
+               "string",
+               "string",
+               "string",
+               "string",
+               "integer",
+               "double",
+               "string"
+            ]
+         },
+         "dataConfig":{
+            "amount":48,
+            "mode":"randomization",
+            "constraints":[
+               "'Products'.'Name'=DICT(['product 1', 'product 2', 'product 3', 'product 4', 'product 5', 'product 6'])",
+               "'Products'.'Code'=DICT(['85.59.B','62.02.Z',''])",
+               "'Products'.'VAT'=DICT(['23','0',''])",
+               "'Products'.'Gross'=RANGE(100,251)"
+            ]
+         }
+      },
+      {
+         "dataStructureConfig":{
+            "sheetName":"Clients",
+            "sheetIndex":4,
+            "headerRowIndex":0,
+            "startRowIndex":1,
+            "step":0,
+            "columns":[
+               "L.P.",
+               "Display Name",
+               "Name",
+               "Address",
+               "Postal Code",
+               "City",
+               "Country",
+               "Email",
+               "Phone Number",
+               "NIP",
+               "Is Entity",
+               "Payment Duration",
+               "Product",
+               "Unit",
+               "Gross",
+               "Net",
+               "Payment Type",
+               "Active"
+            ],
+            "dataTypes":[
+               "integer",
+               "string",
+               "string",
+               "string",
+               "string",
+               "string",
+               "string",
+               "string",
+               "string",
+               "string",
+               "string",
+               "string",
+               "integer",
+               "string",
+               "double",
+               "double",
+               "string",
+               "string"
+            ]
+         },
+         "dataConfig":{
+            "amount":190,
+            "mode":"randomization",
+            "constraints":[
+               "'Clients'.'Is Entity'=DICT(['Yes','No'])",
+               "'Clients'.'Payment Duration'=DICT(['WEEKLY'])",
+               "'Clients'.'Product'=ONE_OF('Products'.'L.P.',XSSF_WORKBOOK,1,2,48,8,'integer')",
+               "'Clients'.'Unit'=DICT(['HOUR'])",
+               "'Clients'.'Gross'=RANGE(100,251)",
+               "'Clients'.'Payment Type'=DICT(['INVOICE'])",
+               "'Clients'.'Active'=DICT(['Yes','No'])"
+            ]
+         }
+      },
+      {
+         "dataStructureConfig":{
+            "sheetName":"Schedule",
+            "sheetIndex":0,
+            "headerRowIndex":1,
+            "startRowIndex":2,
+            "step":0,
+            "datetimeFormat":"MM/dd/YYYY HH:mm",
+            "columns":[
+               "L.P.",
+               "Title",
+               "Description",
+               "Type",
+               "Obstacles",
+               "Status",
+               "Date From",
+               "Date To",
+               "Time (h)",
+               "Invoice",
+               "Zysk"
+            ],
+            "dataTypes":[
+               "integer",
+               "string",
+               "string",
+               "string",
+               "string",
+               "string",
+               "datetime",
+               "datetime",
+               "double",
+               "string",
+               "integer"
+            ]
+         },
+         "dataConfig":{
+            "amount":3900,
+            "mode":"randomization",
+            "constraints":[
+               "'Schedule'.'Type'=DICT(['MEETING'])",
+               "'Schedule'.'Status'=DICT(['TODO','DONE'])",
+               "'Schedule'.'Time (h)'=DICT([0.5,1,1.5,2,2.5,3])",
+               "'Schedule'.'Invoice'=DICT(['TO ISSUE','INVOICED','PAID'])",
+               "'Schedule'.'Zysk'=RANGE(0,451)"
+            ]
+         }
+      }
+   ]
+}
